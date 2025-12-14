@@ -14,13 +14,6 @@ def create_app():
     load_dotenv()
     app = Flask(__name__, static_folder="static", static_url_path="")
 
-    # --- Configuración base ---
-    app.config['SQLALCHEMY_DATABASE_URI'] = os.getenv("SQLALCHEMY_DATABASE_URI")
-    app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
-    app.config["SECRET_KEY"] = os.getenv("SECRET_KEY", "change_me")
-    app.config["MAX_CONTENT_LENGTH"] = getattr(Config, "MAX_CONTENT_LENGTH", 16 * 1024 * 1024)
-    app.config["ALLOWED_EXTENSIONS"] = getattr(Config, "ALLOWED_EXTENSIONS", {"png", "jpg", "jpeg", "webp"})
-
     # --- UPLOADS: ruta absoluta y asegurarse de que existe ---
     raw_upload = getattr(Config, "UPLOAD_FOLDER", "uploads")
     upload_dir = Path(raw_upload)
@@ -84,4 +77,5 @@ def create_app():
             }, 200
 
     return app
+
 
