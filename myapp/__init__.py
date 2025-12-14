@@ -13,6 +13,7 @@ migrate = None
 def create_app():
     load_dotenv()
     app = Flask(__name__, static_folder="static", static_url_path="")
+    app.config.from_object(Config) 
 
     # --- UPLOADS: ruta absoluta y asegurarse de que existe ---
     raw_upload = getattr(Config, "UPLOAD_FOLDER", "uploads")
@@ -77,5 +78,6 @@ def create_app():
             }, 200
 
     return app
+
 
 
