@@ -15,7 +15,7 @@ def create_app():
     app = Flask(__name__, static_folder="static", static_url_path="")
 
     # --- Configuración base ---
-    app.config["SQLALCHEMY_DATABASE_URI"] = os.getenv("DATABASE_URL")
+    app.config['SQLALCHEMY_DATABASE_URI'] = os.getenv("SQLALCHEMY_DATABASE_URI")
     app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
     app.config["SECRET_KEY"] = os.getenv("SECRET_KEY", "change_me")
     app.config["MAX_CONTENT_LENGTH"] = getattr(Config, "MAX_CONTENT_LENGTH", 16 * 1024 * 1024)
@@ -84,3 +84,4 @@ def create_app():
             }, 200
 
     return app
+
