@@ -30,6 +30,11 @@ def create_app():
     origins = [o for o in os.getenv("CORS_ORIGINS", "").split(",") if o]
     CORS(app, resources={r"/api/*": {"origins": origins}}, supports_credentials=True)
 
+    print("ENV DATABASE_URL:", os.getenv("DATABASE_URL"))
+    print("ENV SQLALCHEMY_DATABASE_URI:", os.getenv("SQLALCHEMY_DATABASE_URI"))
+    print("CFG SQLALCHEMY_DATABASE_URI BEFORE INIT:", app.config.get("SQLALCHEMY_DATABASE_URI"))
+
+    
     # --- Inicialización de DB y migraciones ---
     db.init_app(app)
     global migrate
@@ -78,6 +83,7 @@ def create_app():
             }, 200
 
     return app
+
 
 
 
