@@ -43,6 +43,10 @@ def create_app():
     with app.app_context():
         from myapp import models  # noqa
 
+    # --- Crear tablas automáticamente---
+    with app.app_context():
+        db.create_all()
+
     # --- Registrar blueprints ---
     from myapp.routes import auth, games, users
     app.register_blueprint(auth.bp,  url_prefix="/api" + auth.bp.url_prefix)
@@ -82,6 +86,7 @@ def create_app():
             }, 200
 
     return app
+
 
 
 
