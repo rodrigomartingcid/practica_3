@@ -27,8 +27,7 @@ def create_app():
     print("UPLOAD_FOLDER =>", app.config["UPLOAD_FOLDER"])
 
     # --- CORS (solo para API) ---
-    origins = [o for o in os.getenv("CORS_ORIGINS", "").split(",") if o]
-    CORS(app, resources={r"/api/*": {"origins": origins}}, supports_credentials=True)
+   CORS(app, resources={r"/api/*": {"origins": "*"}})
 
     print("ENV DATABASE_URL:", os.getenv("DATABASE_URL"))
     print("ENV SQLALCHEMY_DATABASE_URI:", os.getenv("SQLALCHEMY_DATABASE_URI"))
@@ -83,6 +82,7 @@ def create_app():
             }, 200
 
     return app
+
 
 
 
