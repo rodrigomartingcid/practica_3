@@ -1,3 +1,4 @@
+#config.py
 import os
 from dotenv import load_dotenv
 from pathlib import Path
@@ -18,3 +19,4 @@ class Config:
     UPLOAD_SUBDIR = "covers"
     MAX_CONTENT_LENGTH = 5 * 1024 * 1024
     ALLOWED_EXTENSIONS = {"png", "jpg", "jpeg", "webp"}
+
